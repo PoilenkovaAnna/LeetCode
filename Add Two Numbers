@@ -1,0 +1,25 @@
+class Solution {
+    func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode?  {
+        var l1 = l1
+        var l2 = l2
+        var l :ListNode = ListNode (Int()) 
+        let FirstNode : ListNode = l
+        if l1 == nil && l2 == nil  { return nil }
+        while  ( l1 != nil || l2 != nil ) {
+            let sum = (l1?.val ?? 0) + (l2?.val ?? 0) 
+            var fl: Bool = !( l1?.next == nil && l2?.next == nil ) 
+            if (sum/10 == 1) {
+                l1?.next = l1?.next ?? ListNode(0)
+                l1 = l1?.next 
+                l1?.val += 1
+            } else { l1 = l1?.next}
+            l2  = l2?.next 
+            l.val += sum % 10 // целое от деления
+            if (fl) || (sum / 10 != 0 ) {
+                l.next = ListNode (Int())
+                l = (l.next)! 
+            }     
+        }
+        return FirstNode
+    }
+}
