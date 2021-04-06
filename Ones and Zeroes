@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        vector<vector<int> > dp(m + 1, vector<int>(n + 1));
+        for (int i=0; i < strs.size(); i++){
+            int j = 0;
+            int amount_0 = 0;
+            int amount_1 = 0;
+            while (((amount_0 <= m) || (amount_1 <= n) ) && j < strs[i].length()){
+                std::cout << strs[i][j] ;
+                if (strs[i][j] == '0') amount_0++;
+                else amount_1++;
+                j++;
+            }
+            
+        
+            for(int i = m; i >= amount_0; i--)
+			    for(int j = n; j >= amount_1; j--)                    
+				    dp[i][j] = max(dp[i][j], // either leave the current string
+							   dp[i - amount_0][j - amount_1] + 1);
+        }
+        
+        
+        return dp[m][n];
+    }
+};
