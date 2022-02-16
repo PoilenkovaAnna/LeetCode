@@ -1,0 +1,21 @@
+class Solution {
+    func findDisappearedNumbers(_ nums: [Int]) -> [Int] {
+        var nums = nums
+        for num in nums {
+            let pos = abs(num) - 1
+            if nums[pos] > 0 {
+                nums[pos] = num * (-1)
+            }
+        }
+        
+        var res: Array<Int> = []
+        
+        for i in 0...nums.count-1{
+            if nums[i] > 0 {
+                res.append(i+1)
+            }
+        }
+        
+        return res
+    }
+}
