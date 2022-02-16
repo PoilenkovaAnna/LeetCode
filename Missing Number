@@ -1,0 +1,10 @@
+
+class Solution {
+    func missingNumber(_ nums: [Int]) -> Int {
+        var sum_nums: Int = 0
+        for item in nums{
+            sum_nums += item 
+        }
+        return nums.count * (nums.count + 1)/2 - sum_nums
+    }
+}
