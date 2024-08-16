@@ -1,0 +1,23 @@
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        n = len(nums)
+        if n == 0: return([])
+        if n == 1: return([str(nums[0])])
+
+        res_array = []
+        anchor = nums[0]
+
+        for i in range(1, n):
+            if nums[i] - nums[i-1] != 1:
+                if anchor == nums[i-1]:
+                   res_array.append(f'{nums[i-1]}') 
+                else:
+                   res_array.append(f'{anchor}->{nums[i-1]}') 
+                anchor = nums[i]
+        
+        if anchor != nums[n-1]: 
+            res_array.append(f'{anchor}->{nums[n-1]}') 
+        else:
+            res_array.append(f'{nums[n-1]}') 
+
+        return res_array
